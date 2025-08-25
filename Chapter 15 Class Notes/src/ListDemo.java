@@ -33,6 +33,8 @@ public class ListDemo
         // The next method also returns the element that the iterator passes over.
         String avenger = iterator.next();
         System.out.println(avenger + " is an Avenger.");
+
+        
         
     }
 }
