@@ -15,13 +15,14 @@ public class test2 {
             boolean rapidFire = false;
             int rapidFireTicks = 0;
             javax.swing.Timer timer;
-            int enemySpeed = 3;
-            int bulletSpeed = 12;
+            int enemySpeed = 2;
+            int bulletSpeed = 30;
             int spawnCounter = 0;
             int powerupCounter = 0;
             boolean gameOver = false;
             int bgOffset = 0;
             java.awt.Color[] neonColors = {
+                
                 java.awt.Color.CYAN, java.awt.Color.MAGENTA, java.awt.Color.YELLOW, java.awt.Color.GREEN, java.awt.Color.ORANGE
             };
             float shipAngle = 0;
@@ -62,10 +63,10 @@ public class test2 {
                     if (gameOver) return;
 
                     // Neon animated starfield with parallax
-                    bgOffset = (bgOffset + 3 + (hyperdrive > 0 ? 10 : 0)) % getHeight();
+                    bgOffset = (bgOffset + 3) % getHeight();
 
                     // Move ship
-                    int moveSpeed = 10 + (hyperdrive > 0 ? 10 : 0);
+                    int moveSpeed = 10 + (hyperdrive > 0 ? 10 : 0); // Only ship moves faster
                     if (left && shipX > 0) { shipX -= moveSpeed; shipAngle = Math.max(shipAngle - 0.12f, -0.5f);}
                     else if (right && shipX < getWidth() - shipW) { shipX += moveSpeed; shipAngle = Math.min(shipAngle + 0.12f, 0.5f);}
                     else shipAngle *= 0.8f;
@@ -91,8 +92,7 @@ public class test2 {
                     // Move bullets
                     for (int i = 0; i < bullets.size(); i++) {
                         java.awt.Point b = bullets.get(i);
-                        b.y -= bulletSpeed + (hyperdrive > 0 ? 8 : 0);
-                        if (hyperdrive > 0) b.x += (i % 2 == 0 ? -2 : 2);
+                        b.y -= bulletSpeed;
                     }
                     bullets.removeIf(b -> b.y < 0);
 
@@ -117,7 +117,7 @@ public class test2 {
                     for (int i = 0; i < enemies.size(); i++) {
                         java.awt.Point enemy = enemies.get(i);
                         if (enemy.x == -1000 && enemy.y == -1000) continue; // boss handled later
-                        enemy.y += enemySpeed + (hyperdrive > 0 ? 6 : 0);
+                        enemy.y += enemySpeed;
                         enemy.x += (int)(Math.sin(enemy.y / 28.0 + i) * 4);
                     }
 
@@ -257,7 +257,7 @@ public class test2 {
 
                 // Neon animated starfield (parallax)
                 for (int layer = 0; layer < 3; layer++) {
-                    int speed = (layer + 1) * (2 + layer * 2 + (hyperdrive > 0 ? 5 : 0));
+                    int speed = (layer + 1) * (2 + layer * 2);
                     for (int i = 0; i < 60 + layer * 30; i++) {
                         int y = (i * 60 + bgOffset * speed / 3) % getHeight();
                         int x = (int)(Math.sin(i * 0.5 + bgOffset * 0.02 + layer) * (400 - layer * 120) + getWidth() / 2);

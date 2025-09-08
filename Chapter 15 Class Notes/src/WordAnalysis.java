@@ -32,14 +32,14 @@ public class WordAnalysis
         System.out.println("There are " +novelWords.size() + " unique words in the novel.");
 
         //Print the number of unique words with >3 words
-        Iterator<String> iterator = novelWords.iterator);
+        Iterator<String> iterator = novelWords.iterator();
         while (iterator.hasNext()){
             if (iterator.next().length() <=3){
                 iterator.remove();
             }
         }
-        System.out.println("There are " + novelWords.size() + " unique words in the novel with more than 3 letters.")
-    }
+        System.out.println("There are " + novelWords.size() + " unique words in the novel with more than 3 letters.");
+    }           
 
     /**
      * Reads all words from a file.
