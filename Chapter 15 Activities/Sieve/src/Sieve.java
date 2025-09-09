@@ -23,25 +23,22 @@ public class Sieve
         }
         System.out.println(numbers);
         int v = 2;
-        while (v <= n){
-            for (int i = 0; i < numbers.size(); i++){
-                if (numbers.get(i) % v == 0)
-                    numbers.remove(i);
+        while (v <= n) {
+            Iterator<Integer> it = numbers.iterator();
+            while (it.hasNext()) {
+                int num = it.next();
+                if (num > v && num % v == 0) {
+                    it.remove();
+                }
             }
             v++;
-            System.out.println(numbers);
+            
+             System.out.println(numbers);
         }
         
         
         
         // Your work goes here
-        
-
-
-
-
-
-
 
     }
 }
