@@ -18,7 +18,8 @@ public class FirstLetterMap
         {
 
             // Create your map here
-            ...
+            Map<Character, Set<String>> map = new TreeMap<>();
+            
 
             while (in.hasNext())
             {
@@ -27,7 +28,11 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Modify Worked Example 15.1
-                . . .
+                // Don't use merge()
+                if (!map.containsKey(c)) {
+                    map.put(c, new TreeSet<>()); // Not sure exactly what's going on here
+                }
+                
 
 
             }

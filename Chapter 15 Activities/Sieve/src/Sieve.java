@@ -33,9 +33,9 @@ public class Sieve
             }
             v++;
             
-             System.out.println(numbers);
+             
         }
-        
+        System.out.println(numbers);
         
         
         // Your work goes here
