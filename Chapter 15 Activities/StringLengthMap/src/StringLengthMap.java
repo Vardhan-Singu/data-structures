@@ -18,7 +18,7 @@ public class StringLengthMap
         {
 
             // Create your map here
-            
+            Map<Integer, String> map = new TreeMap<>();
 
             while (in.hasNext())
             {
@@ -27,7 +27,15 @@ public class StringLengthMap
 
                 // Update the map here
                 // Modify Worked Example 15.1
-                
+                if (map.containsKey(len))
+                {
+                    String current = map.get(len);
+                    map.put(len, current + ", " + word);
+                }
+                else
+                {
+                    map.put(len, word);
+                }
 
 
             }
