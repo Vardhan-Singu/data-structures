@@ -32,14 +32,16 @@ public class FirstLetterMap
                 if (!map.containsKey(c)) {
                     map.put(c, new TreeSet<>()); // Not sure exactly what's going on here
                 }
-                
+                map.get(c).add(word); // add the word to the set
 
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            for (Character key : map.keySet()) {
+                System.out.println(key + ": " + map.get(key));
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);

@@ -30,6 +30,7 @@ public class FirstLetterMap
             while (in.hasNext())
             {
                 String word = clean(in.next());
+                
                 Character c = word.charAt(0);
                 /*
                 Integer count  = map.get(c);
@@ -43,11 +44,14 @@ public class FirstLetterMap
                 */
                 // Update the map here
                 // Use the Java 8 merge method
-                map.merge(c, word, (oldValue, notPresentValue) -> oldValue + notPresentValue);
+                map.merge(c, new TreeSet<>(Arrays.asList(word)),(oldSet, newSet) -> { oldSet.addAll(newSet); return oldSet; });
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
+            for (Character key : map.keySet()) {
+                System.out.println(key + ": " + map.get(key));
+            }
             
         } catch (FileNotFoundException e)
         {
