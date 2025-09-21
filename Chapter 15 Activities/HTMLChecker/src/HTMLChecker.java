@@ -22,10 +22,27 @@ public class HTMLChecker
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-            . . .
+            Stack<String> stack = new Stack<>(); 
+            while (in.hasNext()){
+                String tag = in.next();
+                if (tag.charAt(1) != '/'){
+                    stack.push(tag);
+                }
+                else{
+                    String LastOpenedTag = stack.pop();
+                    String ExpectedClosingTag = "</" + LastOpenedTag.substring(2); 
+                    if (tag.equals(ExpectedClosingTag)){
+                        System.out.println("Matched: " + tag);
+                    }
+                    else{
+                        System.out.println("Expected " + ExpectedClosingTag + " but found " + tag);
+                    }
+                }                
+            }
 
 
-        } catch (FileNotFoundException e)
+        }
+        catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
         }
