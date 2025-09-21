@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ToDoList
 {
     // Instance variable(s)
-    private PriorityQueue<Task> taskList;
+    private PriorityQueue<Task> tasks;
 
     /**
      * Constructor
@@ -20,8 +20,7 @@ public class ToDoList
     public ToDoList()
     {
         // Complete this
-        taskList = new PriorityQueue<Task>();
-        
+        tasks = new PriorityQueue<>();
     }
 
     /**
@@ -36,12 +35,12 @@ public class ToDoList
         System.out.println("     quit (exit this program)");
         System.out.println();
         
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
         do
         {
             System.out.print("> ");
-            option = in.nextLine();
+            option = scanner.nextLine();
             if (option.startsWith("add"))
             {
                 addTask(option);
@@ -61,18 +60,28 @@ public class ToDoList
     public void addTask(String optionStr)
     {
         // Complete this method
+        // We are splitting this to 3 parts "add", "priority", "description"
         String[] parts = optionStr.split(" ", 3);
-        int priority = Integer.parseInt(optionStr.split(" ")[1]);
-        String description = parts[2];
-        Task newTask = new Task(priority, description);
-        taskList.add(newTask);
-        System.out.println("Task added.");
-        //System.out.println("Priority: " + priority + " Description: " + description);
+        if (parts.length < 3) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+            return;
+        }
 
-        //System.out.println("You entered: " + optionStr);
-
-            
-            
+        try 
+        {
+            int priority = Integer.parseInt(parts[1]);
+            if (priority < 1 || priority > 9)
+            {
+                System.out.println("The priority must be an integer between 1 and 9.");
+                return;
+            }
+            String description = parts[2];
+            tasks.add(new Task(priority, description));
+        }
+        catch (NumberFormatException e) // I have no idea what this means but it makes it work I will look into this
+        {
+            System.out.println("The priority must be an integer between 1 and 9.");
+        }
     }
 
     /**
@@ -81,16 +90,14 @@ public class ToDoList
     */
     public void nextTask()
     {
-        Task next = null;
+        Task next = tasks.poll();
         
         // Complete this method
-        next = taskList.poll();
-        
-        
         if (next == null)
         {
             System.out.println("There are no tasks in the list.");
-        } else
+        }
+        else
         {
             System.out.println(next.getDescription());
         }
