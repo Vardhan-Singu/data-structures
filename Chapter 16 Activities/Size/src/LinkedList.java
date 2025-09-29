@@ -86,6 +86,14 @@ public class LinkedList
         public Node next;
     }
 
+    private static int size(Node start)
+    {
+        if (start == null)
+            return 0;
+        else
+            return 1 + size(start.next);
+    }
+
     private class LinkedListIterator implements ListIterator
     {
         private Node position;
