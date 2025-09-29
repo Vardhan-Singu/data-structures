@@ -24,8 +24,16 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
+        int count = 0;
+        Node current = first; // What is a node, give me answer in dummy terms? Answer: A node is a basic unit of a data structure, such as a linked list or tree, 
+                              //that contains data and references (or links) to other nodes. It serves as a building block for organizing and storing data in a structured way.
+        while (current != null){
+            count++;
+            current = current.next;
+        }
+        return count;
     }
+    
 
     /**
         Returns the first element in the linked list.
