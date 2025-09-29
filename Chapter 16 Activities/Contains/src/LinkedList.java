@@ -41,7 +41,16 @@ public class LinkedList
     */
     public boolean contains(Object obj)
     {
-        // ...
+        Node current = first;
+        while (current != null)
+        {
+            if (current.data.equals(obj))
+                return true;
+            else
+                current = current.next;
+        }
+        return false;
+
     }
 
     /**
@@ -50,9 +59,11 @@ public class LinkedList
     */
     public Object getFirst()
     {
-        if (first == null)
+        if (first != null)
+            return first.data;
+        else
             throw new NoSuchElementException();
-        return first.data;
+
     }
 
     /**
