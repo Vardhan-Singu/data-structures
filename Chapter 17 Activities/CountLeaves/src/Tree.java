@@ -64,4 +64,15 @@ public class Tree
     }
 
     // Additional methods will be added in later sections.
+
+    public int leafCountHelper(){
+        int leafCount = 0;
+        for (int child : children)
+    }
+
+    // Write a method that counts the number of leaves in a tree. Implement the leafCount method in the Tree class and test your implementation with the TreeTester class.
+    public int leafCount(){
+        return leafCountHelper()
+
+    }
 }
